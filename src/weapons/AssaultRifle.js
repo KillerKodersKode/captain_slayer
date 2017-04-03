@@ -1,8 +1,8 @@
-import Weapon from './Weapon'
-import RedBullet from '../projectiles/Projectile'
+import Weapon from '.'
+import RedBullet from '../projectiles'
 
 export default class AssaultRifle extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, 'Assault Rifle', {
             projectile: RedBullet,
             delayBeforeAttack: 0,
@@ -14,6 +14,6 @@ export default class AssaultRifle extends Weapon {
             sprite: 'rifle',
             icon: 'assault_rifle_icon',
             twoHanded: true
-        });
+        })
     }
 }

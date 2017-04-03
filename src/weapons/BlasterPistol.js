@@ -1,8 +1,8 @@
-import Weapon from './Weapon'
-import RedBullet from '../projectiles/Projectile'
+import Weapon from '.'
+import RedBullet from '../projectiles'
 
 export default class BlasterPistol extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, 'Blaster Pistol', {
             projectile: RedBullet,
             delayBeforeAttack: 0,
@@ -12,6 +12,6 @@ export default class BlasterPistol extends Weapon {
             delayReload: 15,
             icon: 'pistol_icon',
             sprite: 'pistol'
-        });
+        })
     }
 }

@@ -1,8 +1,8 @@
-import Weapon from './Weapon'
-import BlueBullet from '../projectiles/Projectile'
+import Weapon from '.'
+import BlueBullet from '../projectiles'
 
 export default class Uzi extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, 'Uzi', {
             projectile: BlueBullet,
             delayBeforeAttack: 0,
@@ -13,6 +13,6 @@ export default class Uzi extends Weapon {
             delayReload: 90,
             icon: 'uzi_icon',
             sprite: 'uzi'
-        });
+        })
     }
 }

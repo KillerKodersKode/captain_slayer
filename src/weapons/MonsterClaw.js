@@ -1,12 +1,12 @@
-import Weapon from './Weapon'
+import Weapon from '.'
 
 export default class MonsterClaw extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, "Monster's claw", {
             isShooting: false,
             delayBeforeAttack: 15,
             delayAfterAttack: 15,
             addDamage: 5
-        });
+        })
     }
 }

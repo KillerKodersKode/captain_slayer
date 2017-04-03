@@ -1,9 +1,9 @@
-import Unit from './Unit'
+import Unit from '.'
 
 export default class Roach extends Unit {
-    constructor(x, y) {
+    constructor (x, y) {
         super(x, y, 'roach', {
-            speed: 200,
-        });
+            speed: 200
+        })
     }
 }

@@ -2,7 +2,7 @@
 import Phaser from 'phaser'
 import Mushroom from '../sprites/Mushroom'
 
-import Unit from '../units/Unit'
+import Unit from '../units'
 import Marine from '../units/Marine'
 import Spider from '../units/Spider'
 import Zombie from '../units/Zombie'
@@ -13,7 +13,7 @@ import PixelSpider from '../units/PixelSpider'
 import SpiderBoss from '../units/SpiderBoss'
 
 export default class extends Phaser.State {
-    init() {}
+    init () {}
     preload() {}
 
     create() {

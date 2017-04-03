@@ -1,11 +1,11 @@
-import Unit from './Unit'
+import Unit from '.'
 
 export default class Scorpio extends Unit {
-    constructor(x, y) {
+    constructor (x, y) {
         super(x, y, 'scorpio', {
             speed: 250,
             hpMax: 400,
             deathColor: 'yellow'
-        });
+        })
     }
 }

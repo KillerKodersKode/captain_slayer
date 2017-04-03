@@ -1,11 +1,11 @@
-import Unit from './Unit'
+import Unit from '.'
 
 export default class Zombie extends Unit {
-    constructor(x, y) {
+    constructor (x, y) {
         super(x, y, 'zombie', {
             speed: 100,
             deathColor: 'green'
-        });
-        this.animationSpeed = 5;
+        })
+        this.animationSpeed = 5
     }
 }

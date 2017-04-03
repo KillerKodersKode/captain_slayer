@@ -1,13 +1,13 @@
 import MonsterClaw from '../weapons/MonsterClaw'
 
 export default class Unit {
-    constructor(x, y, assetName, stats = {}) {
-        stats = Object.assign({}, Unit.defaultStats, stats);
-        Object.assign(this, stats);
+    constructor (x, y, assetName, stats = {}) {
+        stats = Object.assign({}, Unit.defaultStats, stats)
+        Object.assign(this, stats)
 
         // Set weapons.
-        if (stats.weapon1 !== undefined) this.weapon1 = new stats.weapon1(this);
-        if (stats.weapon2 !== undefined) this.weapon2 = new stats.weapon2(this);
+        if (stats.weapon1 !== undefined) this.weapon1 = new stats.weapon1(this)
+        if (stats.weapon2 !== undefined) this.weapon2 = new stats.weapon2(this)
 
         // // Set dynamic sprite.
         // if (!spriteIsDynamic(assetName)) {
@@ -43,28 +43,28 @@ export default class Unit {
 
         // General properties.
         // this.sprite.unit = this;
-        this.hp = this.hpMax * stats.hp;
+        this.hp = this.hpMax * stats.hp
 
-        this.direction = 0; // Direction of unit's face.
-        this.movementDirection = 0; // Direction of unit's movement.
-        this.moving = false;
-        this.attacking1 = false;
-        this.attacking2 = false;
+        this.direction = 0 // Direction of unit's face.
+        this.movementDirection = 0 // Direction of unit's movement.
+        this.moving = false
+        this.attacking1 = false
+        this.attacking2 = false
     }
 
-    updateSprite() {
-        this.sprite.angle = this.direction;
+    updateSprite () {
+        this.sprite.angle = this.direction
         if (this.moving) {
-            this.sprite.animations.play('move', this.animationSpeed || 10, true);
+            this.sprite.animations.play('move', this.animationSpeed || 10, true)
         } else {
-            this.sprite.animations.play('idle');
+            this.sprite.animations.play('idle')
         }
     }
 
-    modifyStats() {
+    modifyStats () {
         if (this.hp < this.hpMax) {
-            this.hp += this.hpMax * this.hpRegen / 100;
-            if (this.hp > this.hpMax) this.hp = this.hpMax;
+            this.hp += this.hpMax * this.hpRegen / 100
+            if (this.hp > this.hpMax) this.hp = this.hpMax
         };
     };
 

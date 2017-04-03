@@ -1,8 +1,8 @@
-import Weapon from './Weapon'
-import BlueBullet from '../projectiles/Projectile'
+import Weapon from '.'
+import BlueBullet from '../projectiles'
 
 export default class Minigun extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, 'Minigun', {
             projectile: BlueBullet,
             delayBeforeAttack: 0,
@@ -14,6 +14,6 @@ export default class Minigun extends Weapon {
             twoHanded: true,
             icon: 'machine_gun_icon',
             sprite: 'machinegun'
-        });
+        })
     }
 }

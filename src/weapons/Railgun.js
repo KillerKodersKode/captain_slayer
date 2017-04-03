@@ -1,8 +1,8 @@
-import Weapon from './Weapon'
-import RedBullet from '../projectiles/Projectile'
+import Weapon from '.'
+import RedBullet from '../projectiles'
 
 export default class Railgun extends Weapon {
-    constructor(unit) {
+    constructor (unit) {
         super(unit, 'Railgun', {
             projectile: RedBullet,
             delayBeforeAttack: 15,
@@ -14,6 +14,6 @@ export default class Railgun extends Weapon {
             twoHanded: true,
             icon: 'sniper_rifle_icon',
             sprite: 'sniper'
-        });
+        })
     }
 }
