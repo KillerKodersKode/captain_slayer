@@ -2,7 +2,6 @@
 import Phaser from 'phaser'
 import Mushroom from '../sprites/Mushroom'
 
-import Unit from '../units'
 import Marine from '../units/Marine'
 import Spider from '../units/Spider'
 import Zombie from '../units/Zombie'
@@ -14,9 +13,9 @@ import SpiderBoss from '../units/SpiderBoss'
 
 export default class extends Phaser.State {
     init () {}
-    preload() {}
+    preload () {}
 
-    create() {
+    create () {
         const bannerText = 'Phaser + ES6 + Webpack'
         let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText)
         banner.font = 'Bangers'
@@ -44,11 +43,11 @@ export default class extends Phaser.State {
             new PixelSpider(),
             new SpiderBoss(),
             new Troll()
-        ];
-        console.log('new units:', units);
+        ]
+        console.log('new units:', units)
     }
 
-    render() {
+    render () {
         if (__DEV__) {
             this.game.debug.spriteInfo(this.mushroom, 32, 32)
         }
