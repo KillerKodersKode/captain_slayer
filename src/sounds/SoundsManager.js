@@ -1,4 +1,4 @@
-export default class SoundManager {
+export default class SoundsManager {
     constructor (engine, game, config) {
         this.engine = engine
         this.game = game
@@ -21,45 +21,41 @@ export default class SoundManager {
     }
 
     playSound (sound, volume) {
-        const tune
+        let tune
         let i = 0
         while (!tune && (i < this.soundList.length)) {
-            if (this.soundList[i].key === sound) tune = soundList[i];
-            i++;
+            if (this.soundList[i].key === sound) tune = this.soundList[i]
+            i++
         }
         tune.play()
     }
 
     toggleMuteSounds () {
-    if (!game.sound.mute) {
-        game.sound.mute = true;
-        
-    } else {
-        game.sound.mute = false;
-    }
+        if (!this.game.sound.mute) {
+            this.game.sound.mute = true
+        } else {
+            this.game.sound.mute = false
+        }
     }
 
     stopSound (sound) {
-    var tune;
-    var i=0; 
-    while (!tune && (i < soundList.length)) {
-        if (soundList[i].key === sound) tune = soundList[i];
-        i++;
-    }
-    tune.stop();
+        let tune
+        let i = 0
+        while (!tune && (i < this.soundList.length)) {
+            if (this.soundList[i].key === sound) tune = this.soundList[i]
+            i++
+        }
+        tune.stop()
     }
 
     loopSound (sound) {
-    var tune;
-    var i = 0;
-    while(!tune && (i < soundList.length)) {
-        if (soundList[i].key === sound) tune = soundList[i];
-        i++;
+        let tune
+        let i = 0
+        while (!tune && (i < this.soundList.length)) {
+            if (this.soundList[i].key === sound) tune = this.soundList[i]
+            i++
+        }
+        tune.loopFull(0.3)
     }
-    tune.loopFull(0.3);
-    }
-
 
 }
-
-
