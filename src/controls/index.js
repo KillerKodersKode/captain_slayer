@@ -4,7 +4,7 @@ export default class Controls {
     constructor (engine, game) {
         this.engine = engine
         this.game = game
-        this.init()
+        // this.init()
     }
 
     init () {

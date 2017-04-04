@@ -4,6 +4,7 @@ export default class SoundsManager {
         this.game = game
         this.config = config
         this.soundList = []
+        // this.loadSounds()
     }
 
     loadSounds () {

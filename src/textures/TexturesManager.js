@@ -1,10 +1,10 @@
-export default class AssetsManager {
-    constructor (game, texturesPaths, texturesConfig, soundsConfig) {
+export default class TexturesManager {
+    constructor (engine, game, texturesPaths, texturesConfig) {
+        this.engine = engine
         this.game = game
         this.paths = texturesPaths
         this.config = texturesConfig
-        this.sounds = soundsConfig
-        this.loadAssets()
+        // this.loadAssets()
     }
 
     loadAssets () {
