@@ -44,12 +44,12 @@ export const texturesPaths = {
     'death-speech': { path: 'assets/death-speech.png' },
 
     // Tiles.
-    'rockyGrass1': { path: 'assets/CircleTextures/TEXTURES/G0G0A800.BMP' },
-    'rockyGrass2': { path: 'assets/CircleTextures/TEXTURES/G0G0A801.BMP' },
-    'graySand': { path: 'assets/CircleTextures/TEXTURES/D000M801.BMP' },
-    'grass': { path: 'assets/CircleTextures/TEXTURES/G100M800.BMP' },
-    'orangeRocks': { path: 'assets/CircleTextures/TEXTURES/B1B0I800.BMP' },
-    'grayRocks': { path: 'assets/CircleTextures/TEXTURES/S300M802.BMP' },
+    // 'rockyGrass1': { path: 'assets/CircleTextures/TEXTURES/G0G0A800.BMP' },
+    // 'rockyGrass2': { path: 'assets/CircleTextures/TEXTURES/G0G0A801.BMP' },
+    // 'graySand': { path: 'assets/CircleTextures/TEXTURES/D000M801.BMP' },
+    // 'grass': { path: 'assets/CircleTextures/TEXTURES/G100M800.BMP' },
+    // 'orangeRocks': { path: 'assets/CircleTextures/TEXTURES/B1B0I800.BMP' },
+    // 'grayRocks': { path: 'assets/CircleTextures/TEXTURES/S300M802.BMP' },
     // 'bricks': { path: 'assets/CircleTextures/TEXTURES/S4S0I811.BMP' },
     'bricks': { path: 'assets/texture.BMP' },
 
