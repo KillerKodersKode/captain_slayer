@@ -14,7 +14,7 @@ export default class InfoBars {
         this.hpBarOnScreenWidth = 747
         this.hpBarOnScreenHeight = 9
 
-        this.hpBarOnScreenX = (canvasWidth - this.hpBarOnScreenWidth) / 2
+        this.hpBarOnScreenX = (this.engine.canvasWidth - this.hpBarOnScreenWidth) / 2
         this.hpBarOnScreenY = this.game.height - 80
     }
 

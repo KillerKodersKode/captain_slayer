@@ -14,9 +14,10 @@ export default class SoundsManager {
     }
 
     renderSounds () {
-        this.config.map(function (sound) {
-            const tune = this.game.add.audio(sound.key)
-            this.soundList.push(tune)
+        const _this = this
+        this.config.map((sound) => {
+            const tune = _this.game.add.audio(sound.key)
+            _this.soundList.push(tune)
         })
         return this.soundList
     }
