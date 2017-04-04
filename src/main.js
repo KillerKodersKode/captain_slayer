@@ -8,6 +8,8 @@ import GameState from './states/Game'
 
 import config from './config'
 
+import Engine from './engine'
+
 class Game extends Phaser.Game {
 
     constructor() {
@@ -20,6 +22,9 @@ class Game extends Phaser.Game {
         this.state.add('Boot', BootState, false)
         this.state.add('Splash', SplashState, false)
         this.state.add('Game', GameState, false)
+
+        // Maybe instance of Engine should be created another way.
+        this.engine = new Engine(this, width, height)
 
         this.state.start('Game')
     }

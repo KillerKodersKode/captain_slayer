@@ -12,8 +12,12 @@ import PixelSpider from '../units/PixelSpider'
 import SpiderBoss from '../units/SpiderBoss'
 
 export default class extends Phaser.State {
-    init () {}
-    preload () {}
+    init () {
+        this.game.engine.init()
+    }
+    preload () {
+        this.game.engine.loadResources()
+    }
 
     create () {
         const bannerText = 'Phaser + ES6 + Webpack'
