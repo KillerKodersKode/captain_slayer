@@ -1,11 +1,11 @@
-import AI from '../AI'
-import Controls from '../controls'
-import Physics from '../physics'
+import AI from './AI'
+import Controls from './controls'
+import Physics from './physics'
 
-import removeFrom from '../helpers/Array.remove'
+import removeFrom from '../utils/Array.remove'
 import InfoBars from '../infoBars'
-import Debugger from '../debug'
-import Dialog from '../effects/Dialog'
+import Debugger from './debug'
+import Dialog from './effects/Dialog'
 
 
 // Engine contains all information about the world.

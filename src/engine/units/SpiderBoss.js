@@ -2,7 +2,7 @@ import Unit from '.'
 import BossClaw from '../weapons/BossClaw'
 import BossShootingWeapon from '../weapons/BossShootingWeapon'
 import BossBullet from '../projectiles/BossBullet'
-import getOffsetPoint from '../helpers/getOffsetPoint'
+import getOffsetPoint from '../../utils/getOffsetPoint'
 
 export default class SpiderBoss extends Unit {
     constructor (engine, x, y) {

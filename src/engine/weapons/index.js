@@ -1,4 +1,4 @@
-import getOffsetPoint from '../helpers/getOffsetPoint'
+import getOffsetPoint from '../../utils/getOffsetPoint'
 let debugAttack = false
 
 

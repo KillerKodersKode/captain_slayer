@@ -17,7 +17,7 @@ import SoundsManager from './sounds/SoundsManager'
 import { soundsConfig } from './sounds/SoundsConfig'
 import TexturesManager from './textures/TexturesManager'
 import { texturesPaths, texturesConfig } from './textures/TexturesConfig'
-import { Level1, Level2, Level3, BossLevel } from './levels/Levels'
+import { Level1, Level2, Level3, BossLevel } from './engine/levels/Levels'
 
 class ShooterGame extends Phaser.Game {
 
@@ -49,7 +49,7 @@ class ShooterGame extends Phaser.Game {
         this.initGlobalData()
 
         // this.state.start('Game')
-        this.state.start('Menu')
+        this.state.start('Boot')
     }
 
     // Load resources for Game. Must be run in preload() method.

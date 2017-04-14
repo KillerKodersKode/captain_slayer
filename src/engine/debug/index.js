@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import getOffsetPoint from '../helpers/getOffsetPoint'
+import getOffsetPoint from '../../utils/getOffsetPoint'
 
 
 export default class Debugger {

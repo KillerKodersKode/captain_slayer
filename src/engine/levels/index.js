@@ -1,4 +1,4 @@
-import getRandomInt from '../helpers/getRandomInt'
+import getRandomInt from '../../utils/getRandomInt'
 import Marine from '../units/Marine'
 import Dialog from '../effects/Dialog'
 

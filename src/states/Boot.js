@@ -3,7 +3,7 @@ import WebFont from 'webfontloader'
 
 export default class extends Phaser.State {
     init() {
-        this.stage.backgroundColor = '#EDEEC9'
+        // this.stage.backgroundColor = '#EDEEC9'
         this.fontsReady = false
         this.fontsLoaded = this.fontsLoaded.bind(this)
     }
@@ -11,7 +11,7 @@ export default class extends Phaser.State {
     preload() {
         WebFont.load({
             google: {
-                families: ['Bangers']
+                families: ['caveStory'] //['Bangers']
             },
             active: this.fontsLoaded
         })
@@ -25,7 +25,7 @@ export default class extends Phaser.State {
 
     render() {
         if (this.fontsReady) {
-            this.state.start('Splash')
+            this.state.start('Menu') // 'Splash')
         }
     }
 

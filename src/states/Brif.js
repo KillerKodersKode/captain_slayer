@@ -1,10 +1,10 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
-import Minigun from '../weapons/Minigun'
-import Railgun from '../weapons/Railgun'
-import AssaultRifle from '../weapons/AssaultRifle'
-import BlasterPistol from '../weapons/BlasterPistol'
-import Uzi from '../weapons/Uzi'
+import Minigun from '../engine/weapons/Minigun'
+import Railgun from '../engine/weapons/Railgun'
+import AssaultRifle from '../engine/weapons/AssaultRifle'
+import BlasterPistol from '../engine/weapons/BlasterPistol'
+import Uzi from '../engine/weapons/Uzi'
 
 
 export default class extends Phaser.State {

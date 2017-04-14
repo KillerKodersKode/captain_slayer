@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import isInAngle from '../helpers/isInAngle'
+import isInAngle from '../../utils/isInAngle'
 
 export default class Physics {
     constructor (engine, game) {
