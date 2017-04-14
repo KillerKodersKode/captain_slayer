@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
-import BattleEngine from '../engine/BattleEngine'
+import BattleEngine from '../engine'
 
 
 export default class extends Phaser.State {
