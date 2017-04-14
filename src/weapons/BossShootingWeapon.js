@@ -1,9 +1,9 @@
 import Weapon from '.'
-import BossBullet from '../projectiles'
+import BossBullet from '../projectiles/BossBullet'
 
 export default class BossShootingWeapon extends Weapon {
-    constructor (unit) {
-        super(unit, 'PoisonGun', {
+    constructor (engine, unit) {
+        super(engine, unit, 'PoisonGun', {
             projectile: BossBullet,
             delayBeforeAttack: 5,
             delayAfterAttack: 15,

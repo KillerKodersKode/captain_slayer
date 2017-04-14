@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
 
+
 export default class Controls {
     constructor (engine, game) {
         this.engine = engine
         this.game = game
-        // this.init()
+        this.init()
     }
 
     init () {
@@ -21,6 +22,8 @@ export default class Controls {
 
         // Prevent opening context menu when clicking right MB.
         this.game.canvas.oncontextmenu = function (e) { e.preventDefault() }
+
+        this.game.input.mouse.capture = true
     }
 
     rightIsDown () {
@@ -46,26 +49,33 @@ export default class Controls {
         if (x === 0 && y === 0) {
             return undefined
         } else {
-            return Math.degrees(Math.atan2(-y, x)) // y * (-1 ) due to inversion of Y axis.
+            return this.game.math.radToDeg(Math.atan2(-y, x)) // y * (-1 ) due to inversion of Y axis.
         }
     }
 
     setUnitActionsFromControls (unit) {
-        // var x = this.game.input.mousePointer.x
-        // var y = this.game.input.mousePointer.y
-        unit.direction = Math.degrees(this.game.physics.arcade.angleToPointer(unit.sprite))
-        const movementDirection = this.getDirectionFromKeyboard()
-        if (movementDirection) {
-            unit.moving = true
-            unit.movementDirection = movementDirection
+        if (!this.engine.cinematicMode) {
+            // var x = this.game.input.mousePointer.x
+            // var y = this.game.input.mousePointer.y
+            unit.direction = this.game.math.radToDeg(this.game.physics.arcade.angleToPointer(unit.sprite))
+            const movementDirection = this.getDirectionFromKeyboard()
+            // console.log(movementDirection)
+            if (movementDirection !== undefined) {
+                unit.moving = true
+                unit.movementDirection = movementDirection
+            } else {
+                unit.moving = false
+            }
+
+            // Check if attack buttons are pressed.
+            unit.attacking1 = this.game.input.activePointer.leftButton.isDown
+            unit.attacking2 = this.game.input.activePointer.rightButton.isDown
+            unit.reloading = this.keys['reload'].isDown
         } else {
             unit.moving = false
+            unit.attacking1 = false
+            unit.attacking2 = false
         }
-
-        // Check if attack buttons are pressed.
-        unit.attacking1 = this.game.input.activePointer.leftButton.isDown
-        unit.attacking2 = this.game.input.activePointer.rightButton.isDown
-        unit.reloading = this.keys['reload'].isDown
     }
 
 }

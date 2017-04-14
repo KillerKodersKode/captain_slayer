@@ -8,7 +8,7 @@ export default class extends Phaser.State {
         const x = this.game.world.centerX
         const y = this.game.world.centerY
 
-        const manager = this.game.engine.texturesManager
+        const manager = this.game.texturesManager
 
         this.inactive = manager.createSpriteByName(x, TOP, 'tangram_inactive')
         this.active = manager.createSpriteByName(x, TOP, 'tangram_active')

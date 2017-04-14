@@ -1,165 +1,106 @@
+import getRandomInt from '../helpers/getRandomInt'
 import Marine from '../units/Marine'
-import Spider from '../units/Spider'
-import Zombie from '../units/Zombie'
-import Roach from '../units/Roach'
-import SpiderBoss from '../units/SpiderBoss'
 import Dialog from '../effects/Dialog'
 
 
-export default class LevelDesigner {
-    constructor (engine, game) {
+// Represents current game level.
+export default class Level {
+    constructor (engine) {
         this.engine = engine
-        this.game = game
+
+        this.backGroundTexture = 'bricks'
+        this.soundtrack = 'Soundtrack'
+        this.spawnInterval = 18
     }
 
-    getRandomInt (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
+    create () {
+        this.setBackground()
+        this.createStartingUnits()
+        this.startSoundtrack()
+        this.frame = this.spawnInterval
+        this.victoryEnabled = false
+        this.defeatEnabled = true
+        this.end = false
+        this.showIntro()
     }
 
-    startGame (hero, lvl, firstpart) {
-        const catchphrase = this.levels[lvl].name
-        if ((hero.sprite.y === this.game.world.centerY) && (hero.sprite.x === this.game.world.centerX)) {
-            hero.textBubble = new Dialog(hero, 'intro-' + catchphrase)
-            setTimeout(() => {
-                loopSound('Soundtrack')
-                hero.textBubble.unit.textBubble.sprite.destroy()
-                this.engine.cinematicMode = false
-                SpawnCreeps(lvl)
-            }, 2000)
+    setBackground () {
+        this.engine.setBackgroundTexture(this.backGroundTexture)
+    }
+
+    createStartingUnits () {
+        this.engine.createHero(this.engine.game.world.centerX, this.engine.game.world.centerY, Marine)
+    }
+
+    startSoundtrack () {
+        this.engine.game.soundsManager.loopSound(this.soundtrack)
+    }
+
+    showIntro () {
+        this.engine.cinematicMode = true
+        new Dialog(this.engine, this.engine.hero, this.phrase)
+        this.engine.setTimer('intro', 180, () => {
+            this.engine.cinematicMode = false
+        })
+        this.engine.cameraFollowUnit(this.engine.hero)
+    }
+
+    update () {
+        if (!this.engine.cinematicMode) {
+            this.tryEndLevel()
+            this.spawn()
         }
     }
 
-    finishGame (hero, lvl) {
-        const catchphrase = this.levels[lvl].name
-        const toCenter = setInterval(function () {
-            if (hero.sprite.x < this.game.world.centerX) {
-                hero.sprite.x++
+    spawn () {
+        if (this.frame <= 0) {
+            if (this.enemiesCounter > 0) {
+                const unitType = this.getRandomCreepType()
+                const point = this.getRandomPointForSpawn()
+                this.engine.createEnemy(point.x, point.y, unitType)
+                this.enemiesCounter--
+            } else {
+                this.victoryEnabled = true
             }
-            if (hero.sprite.y > this.game.world.centerY) {
-                hero.sprite.y--
-            }
-            if (hero.sprite.x > this.game.world.centerX) {
-                hero.sprite.x--
-            }
-            if (hero.sprite.y < this.game.world.centerY) {
-                hero.sprite.y++
-            }
-            if ((hero.sprite.y === this.game.world.centerY) && (hero.sprite.x === this.game.world.centerX)) {
-                clearInterval(toCenter)
-                hero.textBubble = new Dialog(hero, 'outro-' + catchphrase)
-                setTimeout(() => {
-                    console.log(hero.textBubble.unit.textBubble)
-                    hero.textBubble.unit.textBubble.sprite.destroy()
-                    this.engine.cinematicMode = false
-                    SpawnCreeps(lvl)
-                }, 5000)
-            }
-        }, 4)
-    }
-
-    spawnCreeps (lvl) {
-        if (lvl < 4) {
-            let counter = 0
-            const killOrBeKilled = setInterval(() => {
-                let enemyX = getRandomInt(1, 1920)
-                let enemyY = getRandomInt(1, 1920)
-                const x = this.engine.hero.sprite.x
-
-                if (x > enemyX) {
-                    enemyX = enemyX - x
-                }
-                this.engine.createUnitAsEnemy(enemyY, enemyX, this.levels[lvl].enemy[counter % this.levels[lvl].enemy.length])
-                counter++
-                if (counter === 60) {
-                    clearInterval(KillOrBeKilled)
-                }
-            }, 300)
+            this.frame = this.spawnInterval
         } else {
-            this.engine.createUnitAsBoss(1520, 1520, SpiderBoss)
-            bossAppeared(game)
+            this.frame--
         }
     }
 
-    bossAppeared (game) {
-        let x = 1
-        // game.world.scale.setTo(1, 1);
-        // debugger;
-
-        this.engine.cinematicMode = true
-        game.camera.follow(this.engine.boss.sprite)
-
-        // game.world.
-        const zoom = setInterval(() => {
-            x++
-            game.world.scale.setTo(x, x)
-            if (x === 5) {
-                clearInterval(zoom)
-                game.camera.shake(0.05, 500)
-                zoomOut(x, game)
+    tryEndLevel () {
+        if (!this.end) {
+            if (this.checkDefeatCondition()) {
+                this.engine.lose()
+                this.end = true
+            } else if (this.checkVictoryCondition()) {
+                this.engine.win()
+                this.end = true
             }
-        }, 100)
-
-        const zoomOut = function (x, game) {
-            var zoom = setInterval(() => {
-                x--;
-                game.world.scale.setTo(x, x);
-                if (x === 1 ) {
-                    game.camera.shake(0.05, 500);
-                    clearInterval(zoom);
-                    game.camera.follow(engine.hero.sprite);
-                    engine.cinematicMode = false;
-                };
-            }, 100);
         }
     }
 
-    
-    designLevel (lvl, heroPos) {
-        this.engine.setBackgroundTexture('bricks')
-        initInfoBars()
-        renderMuteButton()
-        this.engine.createUnitAsHero(this.game.world.centerX, this.game.world.centerY, Marine)
+    checkDefeatCondition () {
+        return this.defeatEnabled && this.engine.hero.hp <= 0
+    }
 
-        createToolBar()
+    checkVictoryCondition () {
+        return this.victoryEnabled && this.engine.enemies.length === 0
+    }
 
-        // engine.createUnitAsEnemy(50, 50, Zombie);
-        this.engine.createUnitAsEnemy(50, 600, Spider)
-        // engine.createUnitAsEnemy(600, 50, PixelSpider);
-        // engine.createUnitAsEnemy(600, 600, Troll);
-        this.engine.cinematicMode = true
+    getRandomCreepType () {
+        return this.creepTypes[getRandomInt(0, this.creepTypes.length - 1)]
+    }
 
-        this.levels = [
-            {},
-            {
-                'name': 'first',
-                'enemy': [Zombie, Spider, Zombie]
-            },
-            {
-                'name': 'second',
-                'enemy': [Roach, Spider, Roach]
-            },
-            {
-                'name': 'third',
-                'enemy': [Roach, Zombie, Spider]
-            },
-            {
-                'name': 'boss',
-                'enemy': [SpiderBoss]
-            }
-        ]
-
-
-        StartGame(engine.hero, lvl)
-
-  // 	for (i = 0; i < 10; i++) {
- 	// 	for (j = 0; j < 5; j++) {
- 	// 		engine.createUnitAsEnemy(i * 50, j * 50, Zombie);
- 	// 	}
- 	// }
-
-}
-
+    getRandomPointForSpawn () {
+        let enemyX = getRandomInt(1, this.engine.game.world.width)
+        let enemyY = getRandomInt(1, this.engine.game.world.height)
+        const heroX = this.engine.hero.sprite.x
+        if (heroX > enemyX) {
+            enemyX = enemyX - heroX
+        }
+        return { x: enemyX, y: enemyY }
+    }
 
 
 }
-

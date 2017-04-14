@@ -1,6 +1,10 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
-import { Minigun, Railgun, AssaultRifle, BlasterPistol, Uzi } from '../weapons'
+import Minigun from '../weapons/Minigun'
+import Railgun from '../weapons/Railgun'
+import AssaultRifle from '../weapons/AssaultRifle'
+import BlasterPistol from '../weapons/BlasterPistol'
+import Uzi from '../weapons/Uzi'
 
 
 export default class extends Phaser.State {
@@ -57,8 +61,8 @@ export default class extends Phaser.State {
 
     create () {
         const game = this.game
-        game.engine.chosenWeapon1 = undefined
-        game.engine.chosenWeapon2 = undefined
+        game.chosenWeapon1 = undefined
+        game.chosenWeapon2 = undefined
         game.add.text(game.world.centerX - 170, 80, 'CHOOSE THE WEAPON', { font: '42px caveStory', fill: '#ffffff', align: 'center' })
         game.add.text(game.world.centerX - 300, 150, 'YOU CAN USE TWO-HANDED WEAPONS FOR BOTH HANDS \n OR ONE TWO-HANDED WEAPON', { font: '32px caveStory', fill: '#F7931E', align: 'center' })
 
@@ -72,16 +76,16 @@ export default class extends Phaser.State {
             console.log(btn)
 
             if (!cfg.disabled) {
-                if (!game.engine.chosenWeapon1) {
-                    game.engine.chosenWeapon1 = {
+                if (!game.chosenWeapon1) {
+                    game.chosenWeapon1 = {
                         type: cfg.type,
                         icon: cfg.icon
                     }
                     btn.setFrames(2, 2)
-                    game.engine.chosenWeapon1.twoHanded = cfg.twoHanded
+                    game.chosenWeapon1.twoHanded = cfg.twoHanded
                     nextButton.visible = true
-                } else if (game.engine.chosenWeapon1 && !game.engine.chosenWeapon2 && !cfg.twoHanded && !game.engine.chosenWeapon1.twoHanded) {
-                    game.engine.chosenWeapon2 = {
+                } else if (game.chosenWeapon1 && !game.chosenWeapon2 && !cfg.twoHanded && !game.chosenWeapon1.twoHanded) {
+                    game.chosenWeapon2 = {
                         type: cfg.type,
                         icon: cfg.icon
                     }
@@ -97,7 +101,7 @@ export default class extends Phaser.State {
             button.events.onInputDown.add(() => {
                 chooseButton(button, cfg)
             })
-            this.game.engine.texturesManager.createSpriteByName(cfg.x + 30, cfg.y + 30, cfg.icon)
+            this.game.texturesManager.createSpriteByName(cfg.x + 30, cfg.y + 30, cfg.icon)
             game.add.text(cfg.x + 5, cfg.y + 120, cfg.title, { font: '38px caveStory', fill: '#ffffff', align: 'center' })
             if (cfg.description) game.add.text(cfg.x + 5, cfg.y + 155, cfg.description, { font: '26px caveStory', fill: '#D3D3D3', align: 'center' })
         })

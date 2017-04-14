@@ -1,8 +1,8 @@
 import Unit from '.'
 
 export default class Scorpio extends Unit {
-    constructor (x, y) {
-        super(x, y, 'scorpio', {
+    constructor (engine, x, y) {
+        super(engine, x, y, 'scorpio', {
             speed: 250,
             hpMax: 400,
             deathColor: 'yellow'

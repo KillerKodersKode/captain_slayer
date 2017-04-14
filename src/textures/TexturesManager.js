@@ -1,10 +1,8 @@
 export default class TexturesManager {
-    constructor (engine, game, texturesPaths, texturesConfig) {
-        this.engine = engine
+    constructor (game, texturesPaths, texturesConfig) {
         this.game = game
         this.paths = texturesPaths
         this.config = texturesConfig
-        // this.loadAssets()
     }
 
     loadAssets () {
@@ -13,7 +11,7 @@ export default class TexturesManager {
             if (!texture.spritesheet) {
                 this.game.load.image(name, texture.path)
             } else {
-                this.game.load.spritesheet(name, texture.path, texture.width, texture.height, texture.max)
+                this.game.load.spritesheet(name, texture.path, texture.spritesheet.width, texture.spritesheet.height, texture.spritesheet.max)
             }
         }
     }

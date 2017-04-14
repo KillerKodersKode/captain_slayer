@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import isInAngle from '../helpers/isInAngle'
 
 export default class Physics {
     constructor (engine, game) {
@@ -9,14 +10,12 @@ export default class Physics {
     init () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         // game.physics.startSystem(Phaser.Physics.P2JS);
-        this.game.world.setBounds(0, 0, 1920, 1920)
     }
 
     initPhysicsForUnit (unit) {
         this.game.physics.arcade.enable(unit.sprite)
-        // game.camera.follow(unit.sprite);
         // Set physic boundary box of sprites according to spritesManager.
-        const boundaryBox = getBoundaryBox(unit.sprite.key)
+        const boundaryBox = this.game.texturesManager.getBoundaryBox(unit.sprite.key)
         unit.sprite.body.width = boundaryBox.width
         unit.sprite.body.height = boundaryBox.height
         // sprite.boundaryBox.width / 2); // Problems with collisions of circle bodies, used rectangle bodies.
@@ -35,12 +34,12 @@ export default class Physics {
         this.game.physics.arcade.enable(projectile.sprite)
 
         // Set physic boundary box of sprites according to spritesManager.
-        const boundaryBox = getBoundaryBox(projectile.sprite.key)
+        const boundaryBox = this.game.texturesManager.getBoundaryBox(projectile.sprite.key)
         projectile.sprite.body.width = boundaryBox.width
         projectile.sprite.body.height = boundaryBox.height
     }
 
-    performMovementForUnit (unit) {
+    moveUnit (unit) {
         if (unit.moving) {
             this.game.physics.arcade.velocityFromAngle(unit.movementDirection, unit.speed, unit.sprite.body.velocity)
         } else {
@@ -49,7 +48,7 @@ export default class Physics {
         }
     }
 
-    performMovementForProjectile (projectile) {
+    moveProjectile (projectile) {
         this.game.physics.arcade.velocityFromAngle(projectile.direction, projectile.speed, projectile.sprite.body.velocity)
     }
 
@@ -73,7 +72,7 @@ export default class Physics {
         const targets = []
         group.forEach((unit) => {
             if (this.game.physics.arcade.distanceBetween(attacker.sprite, unit.sprite) <= weapon.range + unit.sprite.body.width / 2 &&
-                isInAngle(attacker.direction, Math.degrees(this.game.physics.arcade.angleBetween(attacker.sprite, unit.sprite)), weapon.hitAngle)) {
+                isInAngle(attacker.direction, this.game.math.radToDeg(this.game.physics.arcade.angleBetween(attacker.sprite, unit.sprite)), weapon.hitAngle)) {
                 targets.push(unit)
             }
         })

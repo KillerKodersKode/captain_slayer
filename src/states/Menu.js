@@ -8,11 +8,11 @@ export default class extends Phaser.State {
     }
 
     preload () {
-        this.game.engine.loadResources()
+        this.game.loadResources()
     }
 
     create () {
-        const manager = this.game.engine.texturesManager
+        const manager = this.game.texturesManager
         this.skull = manager.createSpriteByName(this.game.width / 2 - 120, 20, 'logo_skull')
         this.game_name = manager.createSpriteByName(this.game.width / 2 - 215, 290, 'text_logo')
         this.game_name.alpha = 0
@@ -24,7 +24,6 @@ export default class extends Phaser.State {
             text: 'NEW GAME',
             y: 450,
             callback: () => {
-                console.log(game)
                 game.state.start('Tangram')
             }
         }]
@@ -72,40 +71,7 @@ export default class extends Phaser.State {
 
 
 
-// function Main(){
 
-// }
-// var levelID = 1;
-// Main.prototype.create = function(){
-//   engine = new Engine(1920, 1920);
-//   initPhysics();
-//   designLevel(levelID, {'y': 960, 'x': 50});
-//   initControls();
-//   renderSounds();
-//   renderMuteButton();
-
-//   FPS = 0;
-//   engine.length=0;
-//   // renderMuteButton();
-//   // setInterval(renderFPSToConsole, 1000);
-// }
-
-// Main.prototype.update = function(){
-//   engine.performActivityForObjects();
-//   engine.length++;
-// }
-
-// Main.prototype.render = function(){
-//   engine.enemies.forEach((enemy) => {
-//       if (enemy.hp < enemy.hpMax) {
-//           renderHpBarOverUnit(enemy);
-//       }
-//   });
-
-//   renderHpBarOnScreen(engine.hero);
-//   renderGameInfo();
-//   renderGameState();
-// }
 
 // function DeathScreen () {};
 

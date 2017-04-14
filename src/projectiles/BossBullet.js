@@ -1,8 +1,8 @@
 import Projectile from '.'
 
 export default class BossBullet extends Projectile {
-    constructor (x, y, direction, additional) {
-        super(x, y, direction, 'roach', {
+    constructor (engine, x, y, direction, additional) {
+        super(engine, x, y, direction, 'roach', {
             speed: 300,
             damage: 20,
             lifeTime: 120,

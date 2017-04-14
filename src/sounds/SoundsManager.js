@@ -1,10 +1,8 @@
 export default class SoundsManager {
-    constructor (engine, game, config) {
-        this.engine = engine
+    constructor (game, config) {
         this.game = game
         this.config = config
         this.soundList = []
-        // this.loadSounds()
     }
 
     loadSounds () {

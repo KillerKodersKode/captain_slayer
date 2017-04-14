@@ -1,7 +1,12 @@
+import getOffsetPoint from '../helpers/getOffsetPoint'
 let debugAttack = false
 
+
+
 export default class Weapon {
-    constructor (unit, name, stats = {}) {
+    constructor (engine, unit, name, stats = {}) {
+        this.engine = engine
+
         stats = Object.assign({}, Weapon.defaultStats, stats)
         Object.assign(this, stats)
 
@@ -28,6 +33,7 @@ export default class Weapon {
 
     // Perform every frame.
     update () {
+        // if (this.isUsed) debugger
         // if (this.unit == engine.hero && this.unit.weapon2 == this)
         // console.log(this.requiresAmmo, this.unit.reloading, this.ammo < this.ammoMax);
         if (this.requiresAmmo && this.unit.reloading && this.ammo < this.maxAmmo) {
@@ -78,7 +84,7 @@ export default class Weapon {
         this.state = 'ATTACK'
         this.frame = this.delayBeforeAttack
         if (!this.isShooting && this.showMeleeEffect) this.meleeEffect = new MeleeEffect(this)
-        playSound(this.name)
+        this.engine.game.soundsManager.playSound(this.name)
         if (debugAttack) console.log('attack started') // DEBUG
     }
 
@@ -114,24 +120,23 @@ export default class Weapon {
 
     // Perform shot from weapon.
     shot () {
-        var shooter = this.unit
-        game.shots++
-        var point = getOffsetPoint(shooter.sprite.x, shooter.sprite.y,
-            this.attackPoint.offset + shooter.direction, this.attackPoint.distance)
-        var additional = {
+        const shooter = this.unit
+        this.engine.shots++
+        const point = getOffsetPoint(shooter.sprite.x, shooter.sprite.y, this.attackPoint.offset + shooter.direction, this.attackPoint.distance)
+        const additional = {
             damage: this.addDamage,
             speed: this.addProjectileSpeed
         }
-        engine.createProjectile(point.x, point.y, this.unit.direction, this.projectile, additional)
+        this.engine.createProjectile(point.x, point.y, this.unit.direction, this.projectile, additional)
     };
 
     // Perform melee weapon attack.
     hitWithMeleeWeapon () {
-        var attacker = this.unit
-        var groupToCheck = attacker.role === 'hero' ? engine.enemies : (attacker.role === 'enemy' || attacker.role === 'boss' ? [engine.hero] : [])
-        var unitsHit = getHitUnits(this, groupToCheck)
+        const attacker = this.unit
+        const groupToCheck = attacker.role === 'hero' ? this.engine.enemies : (attacker.role === 'enemy' || attacker.role === 'boss' ? [this.engine.hero] : [])
+        const unitsHit = this.engine.physics.getHitUnits(this, groupToCheck)
         unitsHit.forEach((unit) => {
-            engine.dealDamage(unit, this.addDamage)
+            unit.dealDamage(this.addDamage)
         })
         if (this.meleeEffect !== undefined) this.meleeEffect.destroy()
     };

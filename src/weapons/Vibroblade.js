@@ -1,8 +1,8 @@
 import Weapon from '.'
 
 export default class Vibroblade extends Weapon {
-    constructor (unit) {
-        super(unit, 'Vibroblade', {
+    constructor (engine, unit) {
+        super(engine, unit, 'Vibroblade', {
             isShooting: false,
             delayBeforeAttack: 7,
             delayAfterAttack: 10,

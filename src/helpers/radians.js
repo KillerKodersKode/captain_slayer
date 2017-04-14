@@ -1,4 +1,4 @@
 // Converts from degrees to radians.
-Math.radians = (degrees) => {
+export default function radians (degrees) {
     return degrees * Math.PI / 180
 }

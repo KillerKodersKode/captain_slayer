@@ -1,9 +1,9 @@
 import Weapon from '.'
-import RedBullet from '../projectiles'
+import RedBullet from '../projectiles/RedBullet'
 
 export default class Railgun extends Weapon {
-    constructor (unit) {
-        super(unit, 'Railgun', {
+    constructor (engine, unit) {
+        super(engine, unit, 'Railgun', {
             projectile: RedBullet,
             delayBeforeAttack: 15,
             delayAfterAttack: 45,

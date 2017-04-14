@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import getOffsetPoint from '..helpers/getOffsetPoint'
+import getOffsetPoint from '../helpers/getOffsetPoint'
 
 
 export default class Debugger {
@@ -35,8 +35,6 @@ export default class Debugger {
         this.game.debug.text('FPS: ' + this.game.time.fps, 10, 20, '#00ff00')
         this.game.debug.text('Enemies: ' + this.engine.enemies.length, 10, 35, '#00ff00')
         this.game.debug.text('Projectiles: ' + this.engine.projectiles.length, 10, 50, '#00ff00')
-        renderWeaponsInfo(this.engine.hero)
-        scoreText.text = this.engine.scores ? parseFloat(this.engine.scores) : 0
     }
 
 }
