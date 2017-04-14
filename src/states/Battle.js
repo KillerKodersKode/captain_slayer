@@ -1,12 +1,12 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
-import BattleSceneEngine from '../engine/BattleSceneEngine'
+import BattleEngine from '../engine/BattleEngine'
 
 
 export default class extends Phaser.State {
     init () {
-        this.engine = new BattleSceneEngine(this.game)
+        this.engine = new BattleEngine(this.game)
     }
 
     preload () {

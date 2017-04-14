@@ -9,7 +9,7 @@ import Dialog from '../effects/Dialog'
 
 
 // Engine contains all information about the world.
-export default class BattleSceneEngine {
+export default class BattleEngine {
     constructor (game, level) {
         this.game = game
         this.canvasWidth = game.canvasWidth
