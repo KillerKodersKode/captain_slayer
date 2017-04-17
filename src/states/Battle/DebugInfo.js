@@ -2,9 +2,8 @@ import Phaser from 'phaser'
 import getOffsetPoint from '../../utils/getOffsetPoint'
 
 
-export default class Debugger {
-    constructor (engine, game) {
-        this.engine = engine
+export default class DebugInfo {
+    constructor (game) {
         this.game = game
     }
 
@@ -31,10 +30,10 @@ export default class Debugger {
         }
     }
 
-    renderGameInfo () {
+    render () {
         this.game.debug.text('FPS: ' + this.game.time.fps, 10, 20, '#00ff00')
-        this.game.debug.text('Enemies: ' + this.engine.enemies.length, 10, 35, '#00ff00')
-        this.game.debug.text('Projectiles: ' + this.engine.projectiles.length, 10, 50, '#00ff00')
+        this.game.debug.text('Enemies: ' + this.game.engine.enemies.length, 10, 35, '#00ff00')
+        this.game.debug.text('Projectiles: ' + this.game.engine.projectiles.length, 10, 50, '#00ff00')
     }
 
 }

@@ -1,11 +1,8 @@
 import Phaser from 'phaser'
 
-
-export default class InfoBars {
-    constructor (engine, game) {
-        this.engine = engine
+export default class HpBars {
+    constructor (game) {
         this.game = game
-
         this.init()
     }
 
@@ -53,6 +50,15 @@ export default class InfoBars {
     renderHpBarOnScreen (unit) {
         const barProps = this.computeHpBar(unit, this.hpBarOnScreenWidth)
         this.renderHpBar(this.hpBarOnScreenX + this.game.camera.view.x, this.hpBarOnScreenY + this.game.camera.view.y, this.hpBarOverUnitWidth, this.hpBarOnScreenHeight, barProps)
+    }
+
+    render () {
+        this.renderHpBarOnScreen(this.game.engine.hero)
+        this.game.engine.enemies.forEach((enemy) => {
+            if (enemy.hp < enemy.hpMax) {
+                this.renderHpBarOverUnit(enemy)
+            }
+        })
     }
 
 }

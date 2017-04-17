@@ -3,8 +3,6 @@ import Controls from './controls'
 import Physics from './physics'
 
 import removeFrom from '../utils/Array.remove'
-import InfoBars from '../infoBars'
-import Debugger from './debug'
 import Dialog from './effects/Dialog'
 
 
@@ -18,9 +16,6 @@ export default class BattleEngine {
         this.AI = new AI(this, game)
         this.controls = new Controls(this, game)
         this.physics = new Physics(this, game)
-        this.infoBars = new InfoBars(this, game)
-
-        this.debugger = new Debugger(this, game)
 
         this.TINT_RANGE = 80
         this.debugAttack = false
