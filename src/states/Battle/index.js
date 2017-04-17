@@ -1,10 +1,11 @@
 import Phaser from 'phaser'
 import BattleEngine from '../../engine'
 import Buttons from './Buttons'
-import Toolbar from './Toolbar'
+import DebugInfo from './DebugInfo'
 import HpBars from './HpBars'
 import ScoreInfo from './ScoreInfo'
-import DebugInfo from './DebugInfo'
+import Toolbar from './Toolbar'
+
 
 export default class extends Phaser.State {
     init () {
@@ -13,33 +14,24 @@ export default class extends Phaser.State {
 
     preload () {
         this.game.loadResources()
-        this.game.time.advancedTiming = true
     }
 
     create () {
         this.engine.create()
         this.engine.startLevel(this.game.getCurrentLevel())
 
-        // engine.length = 0
         this.buttons = new Buttons(this.game, this)
-        this.toolbar = new Toolbar(this.game)
+        this.debugInfo = new DebugInfo(this.game)
         this.hpBars = new HpBars(this.game)
         this.scoreInfo = new ScoreInfo(this.game)
-        this.debugInfo = new DebugInfo(this.game)
+        this.toolbar = new Toolbar(this.game)
     }
 
     update () {
         this.engine.update()
-        // this.game.engine.length++
     }
 
     render () {
-        const game = this.game
-        const engine = this.engine
-        game.engine = engine
-
-        // this.engine.infoBars.renderGameState()
-
         this.buttons.render()
         this.toolbar.render()
         this.hpBars.render()

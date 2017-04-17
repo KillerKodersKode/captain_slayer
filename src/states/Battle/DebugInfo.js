@@ -5,6 +5,7 @@ import getOffsetPoint from '../../utils/getOffsetPoint'
 export default class DebugInfo {
     constructor (game) {
         this.game = game
+        this.game.time.advancedTiming = true
     }
 
     renderAttackTarget (weapon, color) {
@@ -34,6 +35,9 @@ export default class DebugInfo {
         this.game.debug.text('FPS: ' + this.game.time.fps, 10, 20, '#00ff00')
         this.game.debug.text('Enemies: ' + this.game.engine.enemies.length, 10, 35, '#00ff00')
         this.game.debug.text('Projectiles: ' + this.game.engine.projectiles.length, 10, 50, '#00ff00')
+
+        // this.renderAttackTarget(this.game.engine.hero.weapon1, '#00ff00')
+        // if (this.game.engine.hero.weapon2) this.renderAttackTarget(this.game.engine.hero.weapon2, '#00ff00')
     }
 
 }

@@ -4,7 +4,6 @@ import WebFont from 'webfontloader'
 
 export default class extends Phaser.State {
     init () {
-        this.game.time.advancedTiming = true
     }
 
     preload () {

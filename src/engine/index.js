@@ -10,6 +10,7 @@ import Dialog from './effects/Dialog'
 export default class BattleEngine {
     constructor (game, level) {
         this.game = game
+        game.engine = this
         this.canvasWidth = game.canvasWidth
         this.canvasHeight = game.canvasHeight
 
