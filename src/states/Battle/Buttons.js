@@ -1,4 +1,4 @@
-export default class MuteButton {
+export default class Buttons {
     constructor (game, context) {
         this.game = game
         this.button = game.add.button(50, 50, 'mute_icon', game.soundsManager.toggleMuteSounds, context)

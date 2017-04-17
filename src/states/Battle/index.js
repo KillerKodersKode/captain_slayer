@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 import BattleEngine from '../../engine'
-import MuteButton from './MuteButton'
+import Buttons from './Buttons'
 import Toolbar from './Toolbar'
 import HpBars from './HpBars'
 import ScoreInfo from './ScoreInfo'
@@ -21,7 +21,7 @@ export default class extends Phaser.State {
         this.engine.startLevel(this.game.getCurrentLevel())
 
         // engine.length = 0
-        this.mute = new MuteButton(this.game, this)
+        this.buttons = new Buttons(this.game, this)
         this.toolbar = new Toolbar(this.game)
         this.hpBars = new HpBars(this.game)
         this.scoreInfo = new ScoreInfo(this.game)
@@ -40,7 +40,7 @@ export default class extends Phaser.State {
 
         // this.engine.infoBars.renderGameState()
 
-        this.mute.render()
+        this.buttons.render()
         this.toolbar.render()
         this.hpBars.render()
         this.scoreInfo.render()
