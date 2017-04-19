@@ -1,8 +1,8 @@
 {
-  "name": "PhaserES6Webpack",
-  "version": "1.0.0",
+  "name": "CaptainSlayer",
+  "version": "0.0.0",
   "description": "",
-  "author": "leandro cabrera <leandcabrera@gmail.com>",
+  "author": "KillerKodersKode <alokhin.r@gmail.com>",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
@@ -25,7 +25,7 @@
     "webpack": "^2.2.0"
   },
   "dependencies": {
-    "phaser-ce": "^2.7.3",
+    "phaser": "^2.6.2",
     "webfontloader": "^1.6.27"
   }
 }
